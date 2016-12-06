@@ -1,22 +1,28 @@
 # lets put all the students into an array
 def input_students
-  puts "Please enter the names of the students.".center(20)
+  puts "Please enter the name of the student.".center(20)
   puts "To finish, just hit return twice.".center(20)
   # create an empty array
   students = []
+  cohorts = [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december, '']
   # get the first name
   name = gets.chomp
   # while the name is not empty repeat this code
-  while !name.empty? do
-    # add the student to the hash array
-    puts "What cohort are they in?"
+  puts "What cohort are they in?"
+  cohort = gets.chomp
+  unless cohorts.include? cohort.downcase.to_sym
+    puts "I'm sorry, that's the wrong spelling. Please enter it again:"
     cohort = gets.chomp
-    cohort.to_s == '' ? :unknown : cohort
-    students << {name: name, cohort: (cohort.to_s == '' ? :unknown : cohort)}
-
+  end
+  until name.empty? && cohort.empty? do
+    # add the student to the hash array
+    students << {name: (name.empty? ? :unknown : name), cohort: (cohort.empty? ? :unknown : cohort.downcase.to_sym)}
     puts "Now we have #{students.count} students"
     # get another name from the user
+    puts "Please add the name of the next student"
     name = gets.chomp
+    puts "What cohort are they in?"
+    cohort = gets.chomp
   end
   # return the array of students
   students
@@ -30,7 +36,7 @@ end
 
 def print(students)
   students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    puts "#{student[:name]} is in cohort #{student[:cohort]}."
   end
 end
 
