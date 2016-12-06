@@ -10,7 +10,7 @@ def input_students
   # while the name is not empty repeat this code
   puts "What cohort are they in?"
   cohort = gets.chomp
-  unless cohorts.include? cohort.downcase.to_sym
+  unless (cohorts.include? cohort.downcase.to_sym) || (cohort == '')
     puts "I'm sorry, that's the wrong spelling. Please enter it again:"
     cohort = gets.chomp
   end
@@ -23,6 +23,10 @@ def input_students
     name = gets.chomp
     puts "What cohort are they in?"
     cohort = gets.chomp
+    unless (cohorts.include? cohort.downcase.to_sym) || (cohort == '')
+      puts "I'm sorry, that's the wrong spelling. Please enter it again:"
+      cohort = gets.chomp
+    end
   end
   # return the array of students
   students

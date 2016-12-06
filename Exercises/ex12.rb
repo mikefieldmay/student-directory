@@ -23,6 +23,10 @@ def input_students
     name = gets.chomp
     puts "What cohort are they in?"
     cohort = gets.chomp
+    unless (cohorts.include? cohort.downcase.to_sym) || (cohort == '')
+      puts "I'm sorry, that's the wrong spelling. Please enter it again:"
+      cohort = gets.chomp
+    end
   end
   # return the array of students
   students
@@ -34,19 +38,9 @@ def print_header
   puts "----------"
 end
 
-def print_students(students)
+def print(students)
   students.each do |student|
     puts "#{student[:name]} is in cohort #{student[:cohort]}."
-  end
-end
-
-def print_by_cohort(students, cohort)
-  cohorts = students.group_by{|h| h[:cohort]}.values
-  cohorts.flatten!
-  cohorts.each do |student|
-    if student[:cohort] == cohort
-      puts "#{student[:name]} is in cohort #{student[:cohort]}."
-    end
   end
 end
 
@@ -54,8 +48,16 @@ def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
 
+def print_list(students)
+  if students.length >= 1
+    print_header
+    print(students)
+    print_footer(students)
+  else
+    puts "There are no students"
+  end
+end
+
 students = input_students
 
-print_header
-print_by_cohort(students, :may)
-print_footer(students)
+print_list(students)
