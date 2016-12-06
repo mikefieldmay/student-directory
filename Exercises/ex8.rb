@@ -40,11 +40,13 @@ def print_students(students)
   end
 end
 
-def print_by_cohort(students)
+def print_by_cohort(students, cohort)
   cohorts = students.group_by{|h| h[:cohort]}.values
   cohorts.flatten!
   cohorts.each do |student|
-    puts "#{student[:name]} is in cohort #{student[:cohort]}."
+    if student[:cohort] == cohort
+      puts "#{student[:name]} is in cohort #{student[:cohort]}."
+    end
   end
 end
 
@@ -55,5 +57,5 @@ end
 students = input_students
 
 print_header
-print_by_cohort(students)
+print_by_cohort(students, :may)
 print_footer(students)
