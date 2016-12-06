@@ -6,7 +6,7 @@ def input_students
   students = []
   cohorts = [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december, '']
   # get the first name
-  name = gets.chomp
+  name = gets.strip
   # while the name is not empty repeat this code
   puts "What cohort are they in?"
   cohort = gets.chomp
