@@ -114,13 +114,11 @@ end
 
 def load_students(filename = STDIN.gets.chomp)
   if File.exist?(filename)
-      File.open(filename, "r") do |file|
-      file.readlines.each do |line|
+      CSV.foreach(filename) do |line|
         name, cohort = line.chomp.split(',')
         add_to_student_array(name, cohort)
       end
     puts "#{filename} has been successfully loaded."
-  end
   else
     puts "I'm sorry, we've got no record of that file. Returning to the main menu"
   #  puts "Hit enter to go back to the main menu, or try typing the filename again"
@@ -130,6 +128,7 @@ def load_students(filename = STDIN.gets.chomp)
     #else
     #  load_students
     #end
+    return
   end
 
 end
