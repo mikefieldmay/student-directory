@@ -18,14 +18,19 @@ end
 def menu_choice(selection)
   case selection
   when "1"
+    puts "You chose option 1. Input the students"
     input_students
-  when "2"
+  when '2'
+    puts "You chose option 2. Show the students"
     show_students
   when "3"
+    puts "You chose option 3. Save the list to students.csv"
     save_students
   when "4"
+    puts "You chose option 4. Load the list from students.csv"
     load_students
   when "9"
+    puts "Goodbye for now"
       exit # this will cause the program to terminate
   else
     puts "I don't know what you meant, try again"
